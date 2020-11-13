@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="/css/style.css">
+   <link rel="icon" href="/img/book.jpg" type="image/icon type"> 
+    <title>Edit story</title>
+</head>
+<body>
+     {{> header}}
+     <div class="container">
+    <div class="add_story">
+        <h3>Edit Story</h3>
+        {{#with story}}
+        <form action="/stories/{{_id}}" method="POST" >
+        <input type="hidden" name="_method" value="PUT">
+            <div class="row">
+                <div class="input-field">
+                    <label for="title">Title</label>
+                    <input class="lower-border"  value="{{title}}" type="text" id="title" name="title">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <label for="status">Status</label>
+                    <select class="lower-border" name="status" id="status" >
+                        {{#select status}}
+                        <option value="public" selected >Public</option>
+                        <option value="private">Private</option>
+                        {{/select}}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <h5>Tell us your story</h5>
+                    <textarea rows="18" name="body" id="body"> {{body}} </textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <button type="submit" class="btn-primary">Update</button>
+                    <a href="/" class="btn-secondary"> Cancel</a>
+                </div>
+            </div>
+        </form>
+        {{/with}}
+    </div>
+    </div>
+    {{> footer}}
+
+    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html>

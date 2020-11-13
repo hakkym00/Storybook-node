@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css"> 
+    <link rel="icon" href="/img/book.jpg" type="image/icon type">
+    <title>Public stories</title>
+</head>
+<body>
+    {{> header}}
+    <div class="container">
+        <h1>Stories</h1>
+        <div class="row-flex">
+        {{#each stories}}
+        
+        <div class="coloum-body">
+            <div class="editIcon">
+                {{{editIcon owner ../user _id }}}
+            </div>
+            <h4 class="coloum-title"> {{title}} </h4>
+            <p class="coloum-text"> {{stripTag (truncateStr body)}} .</p>
+            <br>
+            <div class="coloum-chip">
+                <img src="{{owner.image}}" alt="img">
+                <a href="/stories/user/{{owner._id}}">{{owner.displayName}}</a>
+            </div>
+            <div class="coloum-action">
+                <a href="/stories/{{_id}}"> Read more</a>
+            </div>
+        </div>
+    
+        {{else}}
+        <div>No public stories for display</div>
+        {{/each}}
+        </div>
+    </div>
+
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="/js/index.js"></script>
+</body>
+</html>

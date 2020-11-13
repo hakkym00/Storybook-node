@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="/css/style.css"> 
+   <link rel="icon" href="/img/book.jpg" type="image/icon type">
+
+    <title> Dashboard</title>
+</head>
+<body>
+
+    {{> header}}
+    <div class="container">
+    <h5>Dashboard</h5>
+    <h2>Welcome {{name}} </h2>
+    <p> Here are your stories...</p>
+    {{#if stories}}
+    <div style="overflow-x:auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each stories}}
+                <tr>
+                    <td><a href="/stories/{{_id}}" > {{title}}</a></td>
+                    <td> {{ dateFormat createdAt}} </td>
+                    <td> <span>{{status}}</span> </td>
+                    <td>
+                        <div>
+                            <form class="form-margin" action="/stories/delete/{{_id}}" method="POST">
+                            <a href="/stories/edit/{{_id}}" class="btn-secondary">Edit</a>
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn-secondary" >Delete</button>
+                            </form>
+                        </div>                        
+                    </td>
+
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    </div>
+
+    {{else}}
+    <p>You have not created any stories</p>
+    {{/if}}
+
+    {{> add_btn}}
+    </div>
+
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="/js/index.js"></script>
+</body>
+</html>

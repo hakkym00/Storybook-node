@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="/css/style.css"> 
+   <link rel="icon" href="/img/book.jpg" type="image/icon type">
+    <title>Read story</title>
+</head>
+<body>
+    {{> header}}
+    <div class="container">
+        {{#with story}}
+            <div class="read-container" >
+                <div class="owner-story">
+                    <h2> {{title}}  {{{editIcon owner ../user _id }}} </h2>
+                    <div class="story-body">
+                        <span class="story-date"> Written on : {{ dateFormat createdAt}} </span>
+                        <p> {{stripTag body}} </p>
+                    </div>
+                </div>
+                <div class="owner-info">
+                    <h3> {{owner.displayName}} </h3>
+                    <img class="read-image" src="{{owner.image}}" alt="">
+                    <hr class="hr">
+                    <a href="/stories/user/{{owner._id}}">More from {{owner.firstName}}</a>
+                </div>
+            </div>
+        {{/with}}
+
+
+    </div>
+
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="/js/index.js"></script>
+</body>
+</html>
